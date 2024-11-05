@@ -128,6 +128,7 @@ else:
             "UVit2DModel",
             "VQModel",
             "DCAE",
+            "DCAE_HF",
         ]
     )
     _import_structure["optimization"] = [
