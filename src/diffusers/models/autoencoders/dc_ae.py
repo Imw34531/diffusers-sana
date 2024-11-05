@@ -13,18 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import Any, Optional, Callable
+from typing import Any, Callable, Optional
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.nn import BatchNorm2d
 from huggingface_hub import PyTorchModelHubMixin
+from torch.nn import BatchNorm2d
 
 from ...configuration_utils import ConfigMixin, register_to_config
-from ..modeling_utils import ModelMixin
-
 from ..activations import get_activation
+from ..modeling_utils import ModelMixin
 from ..normalization import RMSNorm2d
 
 
@@ -791,7 +790,7 @@ def build_decoder_project_out_block(
 
 class Encoder(nn.Module):
     def __init__(
-        self, 
+        self,
         in_channels: int,
         latent_channels: int,
         width_list: list[int] = [128, 256, 512, 512, 1024, 1024],
@@ -860,7 +859,7 @@ class Encoder(nn.Module):
 
 class Decoder(nn.Module):
     def __init__(
-        self, 
+        self,
         in_channels: int,
         latent_channels: int,
         in_shortcut: Optional[str] = "duplicating",
@@ -1095,11 +1094,10 @@ class DCAE_HF(PyTorchModelHubMixin, DCAE):
 
 
 def main():
-    from PIL import Image
     import torch
     import torchvision.transforms as transforms
+    from PIL import Image
     from torchvision.utils import save_image
-    import ipdb
 
     torch.set_grad_enabled(False)
     device = torch.device("cuda")

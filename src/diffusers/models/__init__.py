@@ -36,6 +36,7 @@ if is_torch_available():
     _import_structure["autoencoders.autoencoder_tiny"] = ["AutoencoderTiny"]
     _import_structure["autoencoders.consistency_decoder_vae"] = ["ConsistencyDecoderVAE"]
     _import_structure["autoencoders.vq_model"] = ["VQModel"]
+    _import_structure["autoencoders.dc_ae"] = ["DCAE", "DCAE_HF"]
     _import_structure["controlnet"] = ["ControlNetModel"]
     _import_structure["controlnet_flux"] = ["FluxControlNetModel", "FluxMultiControlNetModel"]
     _import_structure["controlnet_hunyuan"] = ["HunyuanDiT2DControlNetModel", "HunyuanDiT2DMultiControlNetModel"]
@@ -83,6 +84,8 @@ if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
     if is_torch_available():
         from .adapter import MultiAdapter, T2IAdapter
         from .autoencoders import (
+            DCAE,
+            DCAE_HF,
             AsymmetricAutoencoderKL,
             AutoencoderKL,
             AutoencoderKLAllegro,
