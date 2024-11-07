@@ -959,6 +959,7 @@ class DCAE(ModelMixin, ConfigMixin):
         decoder_act: str = "silu",
         upsample_block_type: str = "ConvPixelShuffle",
         scaling_factor: Optional[float] = None,
+        **kwargs,
     ):
         super().__init__()
         self.encoder = Encoder(
@@ -1088,9 +1089,9 @@ def create_dc_ae_model_cfg(name: str) -> dict:
 
 
 class DCAE_HF(PyTorchModelHubMixin, DCAE):
-    def __init__(self, model_name: str):
+    def __init__(self, model_name: str, **kwargs):
         cfg = create_dc_ae_model_cfg(model_name)
-        DCAE.__init__(self, **cfg)
+        DCAE.__init__(self, **cfg, **kwargs)
 
 
 def main():
@@ -1109,7 +1110,10 @@ def main():
     image = Image.open("/home/junyuc/workspace/code/efficientvit/assets/fig/girl.png")
     x = transform(image)[None].to(device)
     for model_name in REGISTERED_DCAE_MODEL:
-        dc_ae = DCAE_HF.from_pretrained(f"mit-han-lab/{model_name}")
+        dc_ae = DCAE_HF.from_pretrained(
+            f"mit-han-lab/{model_name}",
+            torch_dtype=torch.float16,  # TODO: @junyu support torch_dtype function
+            )
         dc_ae = dc_ae.to(device).eval()
         latent = dc_ae.encode(x)
         print(latent.shape)
