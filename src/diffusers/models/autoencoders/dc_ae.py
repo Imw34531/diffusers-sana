@@ -1089,9 +1089,9 @@ def create_dc_ae_model_cfg(name: str) -> dict:
 
 
 class DCAE_HF(PyTorchModelHubMixin, DCAE):
-    def __init__(self, model_name: str, **kwargs):
+    def __init__(self, model_name: str):
         cfg = create_dc_ae_model_cfg(model_name)
-        DCAE.__init__(self, **cfg, **kwargs)
+        DCAE.__init__(self, **cfg)
 
 
 def main():
