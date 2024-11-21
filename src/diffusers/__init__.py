@@ -107,6 +107,7 @@ else:
             "ModelMixin",
             "MotionAdapter",
             "MultiAdapter",
+            "MultiControlNetModel",
             "PixArtTransformer2DModel",
             "SanaTransformer2DModel",
             "PriorTransformer",
@@ -493,7 +494,7 @@ except OptionalDependencyNotAvailable:
 
 
 else:
-    _import_structure["models.controlnet_flax"] = ["FlaxControlNetModel"]
+    _import_structure["models.controlnets.controlnet_flax"] = ["FlaxControlNetModel"]
     _import_structure["models.modeling_flax_utils"] = ["FlaxModelMixin"]
     _import_structure["models.unets.unet_2d_condition_flax"] = ["FlaxUNet2DConditionModel"]
     _import_structure["models.vae_flax"] = ["FlaxAutoencoderKL"]
@@ -600,6 +601,7 @@ if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
             ModelMixin,
             MotionAdapter,
             MultiAdapter,
+            MultiControlNetModel,
             PixArtTransformer2DModel,
             PriorTransformer,
             SanaTransformer2DModel,
@@ -926,7 +928,7 @@ if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
     except OptionalDependencyNotAvailable:
         from .utils.dummy_flax_objects import *  # noqa F403
     else:
-        from .models.controlnet_flax import FlaxControlNetModel
+        from .models.controlnets.controlnet_flax import FlaxControlNetModel
         from .models.modeling_flax_utils import FlaxModelMixin
         from .models.unets.unet_2d_condition_flax import FlaxUNet2DConditionModel
         from .models.vae_flax import FlaxAutoencoderKL
