@@ -130,7 +130,6 @@ else:
             "UVit2DModel",
             "VQModel",
             "DCAE",
-            "DCAE_HF",
         ]
     )
     _import_structure["optimization"] = [
@@ -575,7 +574,6 @@ if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
     else:
         from .models import (
             DCAE,
-            DCAE_HF,
             AllegroTransformer3DModel,
             AsymmetricAutoencoderKL,
             AuraFlowTransformer2DModel,
